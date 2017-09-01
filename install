@@ -1,0 +1,34 @@
+#!/bin/bash -e
+
+install_wine() {
+  # specify version...
+  sudo pacman -S wine
+}
+
+install_32-bit_prefix() {
+  WINEARCH=win32 WINEPREFIX=$HOME/.league-box winecfg
+}
+
+install_dependencies() {
+  sudo pacman -S lib32-alsa-lib lib32-libldap lib32-lcms2 lib32-gnutls winetricks
+}
+
+install_wine_dependencies() {
+  WINEARCH=win32 WINEPREFIX=$HOME/.league-box winetricks vcrun2005 wininet corefonts adobeair
+}
+
+run_league_installer() {
+  mkdir -p /tmp/lol_installer
+  WINEARCH=win32 WINEPREFIX=$HOME/.league-box wine \
+    LeagueofLegends_EUW_Installer_2016_11_10.exe /extract:Z:/tmp/lol_installer
+  WINEARCH=win32 WINEPREFIX=$HOME/.league-box wine msiexec /i /tmp/lol_installer/LoL.*.msi
+}
+
+main() {
+  # install_32-bit_prefix
+  # install_dependencies
+  # install_wine_dependencies
+  # run_league_installer
+}
+
+main
