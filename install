@@ -10,11 +10,12 @@ install_32-bit_prefix() {
 }
 
 install_dependencies() {
-  sudo pacman -S lib32-alsa-lib lib32-libldap lib32-lcms2 lib32-gnutls winetricks
+  sudo pacman -S lib32-alsa-lib lib32-libldap lib32-lcms2 lib32-gnutls
+  lib32-mpg123 winetricks lib32-openal
 }
 
 install_wine_dependencies() {
-  WINEARCH=win32 WINEPREFIX=$HOME/.league-box winetricks vcrun2005 wininet corefonts adobeair
+  WINEARCH=win32 WINEPREFIX=$HOME/.league-box winetricks d3dx9 vcrun2005 wininet corefonts adobeair
 }
 
 run_league_installer() {
@@ -25,10 +26,12 @@ run_league_installer() {
 }
 
 main() {
+  # !!! winecfg - override msvcp140.dll - solves sign in problem
   # install_32-bit_prefix
   # install_dependencies
   # install_wine_dependencies
   # run_league_installer
+  # must set wine version as XP mode - how to do as script? use winecfg for now
 }
 
 main

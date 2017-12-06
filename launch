@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+# TODO ensure
+# [General]
+# x3d_platform=1
+# is places in Config/game.cfg
+
+# Fix for in-game text not rendering properly under opengl
+# directx3d gets screwy with this setting
+# export MESA_GL_VERSION_OVERRIDE=4.5COMPAT
+unset MESA_GL_VERSION_OVERRIDE
+
+WINEARCH=win32 WINEPREFIX=$HOME/.league-box \
+  wine $HOME/.league-box/drive_c/Riot\ Games/League\ of\ Legends/lol.launcher.admin.exe

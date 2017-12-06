@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+# override shlwapi
+
+WINEARCH=win32 WINEPREFIX=$HOME/.league-box winecfg
+
